@@ -13,10 +13,10 @@
             <a href="{{ url('/add-book-form') }}" class="btn btn-primary btn-lg">+ Add Book</a>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="book-collection">
             @foreach($data as $d)
-                <div class="col d-flex">
-                    <div class="card shadow-sm" style="width: 100%;">
+                <div class="book-card">
+                    <div class="card shadow-sm">
                         <img 
                             class="card-img-top" 
                             src="{{ asset('_uploads/' .$d->photo) }}" 
@@ -57,3 +57,16 @@
 </div>
 
 @endsection
+
+<style>
+    .book-collection {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+    gap: 1rem; /* Spacing between cards */
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+}
+</style>
