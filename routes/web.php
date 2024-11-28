@@ -23,7 +23,7 @@ Route::get('/add-book-form', [BookController::class, 'show_add_form']);
 
 Route::post('/add-book-form', [BookController::class, 'do_add'])->name('add-book');
 
-Route::delete('/delete-book/{id}', [BookController::class, 'do_delete'])->name('delete-book');
+Route::get('/delete-book/{id}', [BookController::class, 'do_delete'])->name('delete-book');
 
 Route::post('/update-book/{id}', [BookController::class, 'do_update'])->name('update-book');
 
