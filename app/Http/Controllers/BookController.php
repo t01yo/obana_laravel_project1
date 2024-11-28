@@ -44,17 +44,22 @@ class BookController
 
     // Deleting
     public function do_delete($id)
-    {
-        $book = DB::table('books')->where('id', $id)->first();
-        if ($book && $book->photo && file_exists(public_path('_uploads/' . $book->photo))) {
-            unlink(public_path('_uploads/' . $book->photo));
-        }
+{
+    $book = DB::table('books')->where('id', $id)->first();
 
-        $query = DB::table('books')->where('id', $id)->delete();
-        if ($query) {
-            return redirect('/book')->with('success', 'Book deleted!');
-        }
+    if ($book && $book->photo && file_exists(public_path('_uploads/' . $book->photo))) {
+        unlink(public_path('_uploads/' . $book->photo));
     }
+
+    $query = DB::table('books')->where('id', $id)->delete();
+
+    if ($query) {
+        return redirect('/book')->with('success', 'Book deleted!');
+    }
+
+    return redirect('/book')->with('error', 'Failed to delete book.');
+}
+
 
     // Update form
     public function show_edit_form($id)

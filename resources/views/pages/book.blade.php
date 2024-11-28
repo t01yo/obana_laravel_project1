@@ -39,14 +39,20 @@
                                 >
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
-                                <a 
-                                    href="{{ url('/delete-book', $d->id) }}" 
-                                    class="btn btn-sm btn-danger" 
-                                    onclick="return confirm('Delete?')"
-                                    title="Delete Book"
-                                >
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
+                            <a 
+                                href="#" 
+                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $d->id }}').submit();" 
+                                class="btn btn-sm btn-danger" 
+                                title="Delete Book"
+                            >
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+
+                            <form id="delete-form-{{ $d->id }}" action="{{ url('/delete-book/' . $d->id) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+
                             </div>
                         </div>
                     </div>
